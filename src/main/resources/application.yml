@@ -12,4 +12,8 @@ server:
     include-binding-errors: always
     include-message: always
 
+logging:
+  level:
+    web: debug
+    root: error
 

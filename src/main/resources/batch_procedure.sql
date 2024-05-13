@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION batch_procedure(
-    IN input_date DATE, IN batch_size INTEGER
+    IN inputDate DATE
 )
 RETURNS VOID AS $$
 DECLARE
@@ -9,11 +9,11 @@ BEGIN
     LOOP
         BEGIN
             DELETE FROM movie
-            WHERE release_date < input_date
+            WHERE release_date < inputDate
             AND release_date IN (
                 SELECT release_date
                 FROM movie
-                WHERE release_date < input_date
+                WHERE release_date < inputDate
                 ORDER BY release_date ASC
                 LIMIT batch_size
                 FOR UPDATE SKIP LOCKED

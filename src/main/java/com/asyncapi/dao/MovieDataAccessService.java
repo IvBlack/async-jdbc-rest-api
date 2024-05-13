@@ -20,12 +20,11 @@ public class MovieDataAccessService implements MovieDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //функция 
     @Override
     public boolean deleteMovies(LocalDate inputDate) {
         jdbcTemplate.execute((CallableStatementCreator) con -> {
-            String storedProc = "{?=call batch_procedure()}"; // Called sql
-            con.setAutoCommit(false); //This sentence is very important, no error
+            String storedProc = "{?=call batch_procedure()}";
+            con.setAutoCommit(false);
             CallableStatement cs = con.prepareCall(storedProc);
             cs.registerOutParameter(1, Types.OTHER);
             return cs;

@@ -10,8 +10,6 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 public class AsyncConf {
-
-    //обертка каждого end-point api в контекст ThreadPoolTaskExecutor
     @Bean("asyncTaskExecutor")
     public Executor asyncTaskExecutor(){
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
